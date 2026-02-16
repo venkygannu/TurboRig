@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CATEGORIES } from '../data/products'
-import { getWhatsAppUrl } from '../config'
+import { useEnquiry } from '../context/EnquiryContext'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -10,6 +10,7 @@ const navLinks = [
 ]
 
 export default function Navbar() {
+  const { openEnquiry } = useEnquiry()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const location = useLocation()
@@ -87,14 +88,13 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </div>
-          <a
-            href={getWhatsAppUrl('general enquiry')}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => openEnquiry('General enquiry')}
             className="ml-2 rounded-lg bg-neon-green/20 px-4 py-2 text-sm font-semibold text-neon-green transition hover:bg-neon-green/30 hover:shadow-neon-green"
           >
             Contact
-          </a>
+          </button>
         </nav>
 
         <button
@@ -149,15 +149,13 @@ export default function Navbar() {
                   {label}
                 </Link>
               ))}
-              <a
-                href={getWhatsAppUrl('general enquiry')}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileOpen(false)}
-                className="mt-2 rounded-lg bg-neon-green/20 px-3 py-2 font-semibold text-neon-green"
+              <button
+                type="button"
+                onClick={() => { openEnquiry('General enquiry'); setMobileOpen(false) }}
+                className="mt-2 rounded-lg bg-neon-green/20 px-3 py-2 font-semibold text-neon-green text-left w-full"
               >
-                Contact on WhatsApp
-              </a>
+                Contact
+              </button>
             </div>
           </motion.div>
         )}

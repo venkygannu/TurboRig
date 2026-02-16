@@ -1,6 +1,6 @@
 # Turborig — Premium Computer Parts
 
-A modern, **no-payment** product catalog for selling computer parts. Visitors browse products, filter by category, open detailed modals, and **enquire via WhatsApp** with a prefilled message. You handle availability and pricing on WhatsApp.
+A modern, **no-payment** product catalog for selling computer parts. Visitors browse products, filter by category, open detailed modals, and **enquire by email**. Enquiries are sent to your inbox (via Formspree or mailto). You handle availability and pricing by replying to the email.
 
 ## Tech stack
 
@@ -50,29 +50,27 @@ The site is static: run `npm run build` and deploy the **`dist`** folder. These 
 - **Cloudflare Pages**: Connect your Git repo, build command `npm run build`, output `dist`. Add a **Redirect rule**: URL `*` → `/index.html` with status 200 (so `/catalog` etc. work).
 - **GitHub Pages**: Build with `npm run build`, push the contents of `dist` to a `gh-pages` branch (or use the `gh-pages` npm package). Set **base** in `vite.config.js` to your repo name if needed, e.g. `base: '/Turborig/'`.
 
-Before deploying, set your **WhatsApp number** in `src/config.js` and commit so the live site uses it.
+Before deploying, set your **email** (and optionally Formspree) in `src/config.js`.
 
-## Set your WhatsApp number
+## Email enquiry (automated)
 
-Edit **`src/config.js`** and replace `WHATSAPP_NUMBER` with your number (country code + number, no `+` or spaces):
-
-```js
-// e.g. India: 919876543210, UK: 447123456789
-export const WHATSAPP_NUMBER = '919876543210'
-```
-
-Enquiry message format:  
-`Hi, I'm interested in [product name]. Please contact me.`
+- **Recipient:** Set `RECIPIENT_EMAIL` in `src/config.js` (e.g. `venkygannu1234@gmail.com`). This is where enquiries go (and is used for the mailto fallback).
+- **Automated delivery (optional):** To receive enquiries directly in your inbox without opening a mail client:
+  1. Go to [formspree.io](https://formspree.io) and sign up.
+  2. Create a new form and set the notification email to your address (e.g. `venkygannu1234@gmail.com`).
+  3. Copy the form ID from the form URL (e.g. from `https://formspree.io/f/abc123xy` copy `abc123xy`).
+  4. In `src/config.js`, set `FORMSPREE_FORM_ID = 'abc123xy'`.
+  If `FORMSPREE_FORM_ID` is left empty, the site still works: “Send enquiry” will open the user’s email client with a pre-filled message to you (mailto).
 
 ## Project structure
 
 ```
 src/
-  config.js           # WhatsApp number + wa.me helper
+  config.js           # Email + Formspree form ID
   data/products.js    # CATEGORIES + PRODUCTS (edit to add/change products)
   components/
     Navbar.jsx        # Sticky glass navbar, categories dropdown
-    Footer.jsx        # Links + WhatsApp contact
+    Footer.jsx        # Links + email contact
     Hero.jsx          # Hero + CTA
     FeaturedProducts.jsx
     ProductCard.jsx   # Card + opens modal on click
@@ -92,10 +90,10 @@ src/
 - **Homepage**: Hero with gradient background, “Browse Products” CTA, featured product grid
 - **Catalog**: Category tabs (GPUs, CPUs, Motherboards, Storage, Accessories), URL `?category=gpu` support
 - **Product cards**: Image, name, short description, price (display only), Details + Enquire buttons
-- **Product modal**: Click card or “Details” → modal with image gallery, full specs, “Enquire via WhatsApp” button
-- **Enquire**: Opens `wa.me/YOUR_NUMBER?text=Hi, I'm interested in [product]. Please contact me.`
-- **Navbar**: Sticky, glass style, logo, Home/Catalog, Categories dropdown, Contact (WhatsApp)
-- **Footer**: Brand, quick links, WhatsApp contact
+- **Product modal**: Click card or “Details” → modal with image gallery, full specs, “Enquire via email” button
+- **Enquire**: Enquiry modal (name, email, message) → Formspree to your inbox, or mailto if not set
+- **Navbar**: Sticky, glass style, logo, Home/Catalog, Categories dropdown, Contact (email)
+- **Footer**: Brand, quick links, email contact
 - **Design**: Dark theme, neon cyan/green accents, glassmorphism, Framer Motion animations, mobile-first
 
 ## Adding or editing products

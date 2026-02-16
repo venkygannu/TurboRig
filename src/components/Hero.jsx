@@ -33,7 +33,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-lg text-gray-400"
         >
-          GPUs, CPUs, motherboards, storage & more. No payments online — enquire via WhatsApp and we’ll sort the rest.
+          GPUs, CPUs, motherboards, storage & more. No payments online — enquire by email and we’ll sort the rest.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 24 }}

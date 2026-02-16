@@ -94,7 +94,7 @@ export default function ProductModal({ product, open, onClose, onEnquire }) {
                     onClick={onEnquire}
                     className="mt-6 w-full rounded-xl bg-neon-green/20 py-3 font-semibold text-neon-green transition hover:bg-neon-green/30 hover:shadow-neon-green"
                   >
-                    Enquire via WhatsApp
+                    Enquire via email
                   </button>
                 </div>
               </div>

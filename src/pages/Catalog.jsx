@@ -38,7 +38,7 @@ export default function Catalog() {
         <h1 className="font-display text-3xl font-bold text-white sm:text-4xl">
           Product <span className="text-neon-cyan">Catalog</span>
         </h1>
-        <p className="mt-2 text-gray-500">Filter by category and enquire via WhatsApp.</p>
+        <p className="mt-2 text-gray-500">Filter by category and enquire by email.</p>
         <div className="mt-8">
           <CategoryTabs
             categories={CATEGORIES}

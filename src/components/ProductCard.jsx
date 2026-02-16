@@ -1,16 +1,17 @@
 import { motion } from 'framer-motion'
 import ProductModal from './ProductModal'
-import { getWhatsAppUrl } from '../config'
+import { useEnquiry } from '../context/EnquiryContext'
 import { useState } from 'react'
 
 export default function ProductCard({ product, index = 0, showPrice = true }) {
+  const { openEnquiry } = useEnquiry()
   const [modalOpen, setModalOpen] = useState(false)
 
   const handleEnquire = (e) => {
     e?.preventDefault?.()
     e?.stopPropagation?.()
-    window.open(getWhatsAppUrl(product.name), '_blank')
     setModalOpen(false)
+    openEnquiry(product.name)
   }
 
   return (
