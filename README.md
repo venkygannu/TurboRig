@@ -106,3 +106,4 @@ Edit **`src/data/products.js`**:
 - **CATEGORIES**: Matches `category` id (e.g. `gpu`, `cpu`, `motherboard`, `storage`, `accessories`).
 
 Use any image URLs (e.g. Unsplash) or place images in `public/` and reference as `/image.jpg`.
+# TurboRig
