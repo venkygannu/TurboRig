@@ -39,7 +39,7 @@ export default function ProductCard({ product, index = 0, showPrice = true }) {
             <p className="mt-1 line-clamp-2 text-sm text-gray-500">{product.description}</p>
             {showPrice && (
               <p className="mt-2 font-mono text-sm font-medium text-neon-green">
-                ${product.price}
+                ₹{product.price.toLocaleString('en-IN')}
                 <span className="ml-1 text-gray-500 font-sans font-normal">— enquire for availability</span>
               </p>
             )}

@@ -72,7 +72,7 @@ export default function ProductModal({ product, open, onClose, onEnquire }) {
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-white sm:text-2xl">{product.name}</h2>
-                  <p className="mt-1 font-mono text-neon-green">${product.price}</p>
+                  <p className="mt-1 font-mono text-neon-green">₹{product.price.toLocaleString('en-IN')}</p>
                   <p className="mt-3 text-sm text-gray-400">{product.description}</p>
                   {product.specs && product.specs.length > 0 && (
                     <div className="mt-6">
